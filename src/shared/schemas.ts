@@ -7,6 +7,7 @@ export const itemInput = z.object({
   title: z.string().trim().min(1, 'Titel fehlt').max(80),
   category: z.string().trim().min(1).max(40).default('Allgemein'),
   note: z.string().trim().max(500).default(''),
+  rating: z.number().int().min(1).max(5).optional(),
 })
 
 export const itemPatch = z.object({
@@ -14,6 +15,7 @@ export const itemPatch = z.object({
   category: z.string().trim().min(1).max(40).optional(),
   note: z.string().trim().max(500).optional(),
   done: z.boolean().optional(),
+  rating: z.number().int().min(1).max(5).optional(),
 })
 
 export type ItemInput = z.infer<typeof itemInput>
@@ -26,4 +28,5 @@ export interface Item {
   note: string
   done: boolean
   createdAt: string
+  rating?: number
 }
